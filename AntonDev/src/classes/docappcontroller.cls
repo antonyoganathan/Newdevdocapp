@@ -9,6 +9,8 @@ public class docappcontroller {
 
 
  public String Dobooking() {
+
+     System.debug("Everything was just debug");
     integer counter=0;
     For(Wrapertimeslot wt:timewraplist){
         if(wt.selected){

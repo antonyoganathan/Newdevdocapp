@@ -1,0 +1,151 @@
+<apex:page controller="docappcontroller">
+  <apex:form id="frm">
+
+  <script type="text/javascript">
+
+
+//var $ = jQuery.noConflict(); 
+   function newfunc(nameVar)
+  {
+      //alert(nameVar);
+      
+    //  $('#theField1').val(value);
+    //  alert('i am here'+ $('#theField1').val());
+     passStringToController(nameVar);
+    //passStringToController();
+     
+  }
+
+//    function enableDisable(cb)
+
+//     {
+// alert('hi');
+//      // $("input:checkbox[id*=chk]").removeAttr('checked');
+
+//       //$(cb).attr('checked', 'checked');
+//       //
+//       var chk = document.getElementByid('chk');            
+//                     for (var i=0; i<chk.length; i++) {
+//                         if(cb.value == chk[i].value) {
+//                             chk[i].checked = true;
+//                         } else {
+//                             chk[i].checked = false;
+//                         }
+//                     }
+
+//     }
+  
+  </script>
+        <apex:pageMessages ></apex:pageMessages>
+        <apex:pageBlock mode="Edit" id="blk1" title="Select Speciality">
+            <apex:pageBlockSection id="Blksec1" title="Select Speciality" columns="">
+            
+                <apex:outputPanel id="InputPannel" >
+                                        
+                        <apex:pageBlockSectionItem id="SpecialistPicklist" >
+                            <apex:inputField value="{!Docdum.Speciality__c}" label="specialist" onchange="newfunc(this.value)" />
+                        </apex:pageBlockSectionItem>
+                        <apex:actionFunction name="passStringToController" action="{!getGetdoc}" immediate="true" reRender="frm">
+                         <apex:param assignto="{!Docdum.Speciality__c}" name="a" value="" />
+                            </apex:actionFunction>   
+                        
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockButtons location="bottom" >
+                <!--apex:commandButton value="Fetch Countries" action="{!FetchCountries}" reRender="CountriesTablePannel,frm"/-->
+                             
+            </apex:pageBlockButtons>
+        
+        </apex:pageBlock>
+         <apex:pageBlock mode="Edit" id="blk2" title="Select doctor">
+            <apex:pageBlockSection id="Blksec2" title="Select doctor" columns="3">
+            
+                <apex:outputPanel id="InputPannel2" >
+                                        
+                        <apex:pageBlockSectionItem id="docPicklist" >
+                        
+                        
+                        <apex:outputLabel value="Doc Name" for="DocName" />
+                            <apex:selectList value="{!Selecteddoc}" required="true" multiselect="false" id="DocName" size="1" > 
+                                <apex:selectOptions value="{!docNameValues}" />
+                            </apex:selectList>
+                        
+                        
+                            
+                        </apex:pageBlockSectionItem>
+                        </apex:outputPanel>
+                        <apex:outputPanel >
+                        <apex:pageBlockSectionItem id="datePicklist" >
+                        
+                        <apex:inputField required="true" value="{!aptdum.Appointment_Date__c}" />
+                        
+
+                        
+                          
+                        </apex:pageBlockSectionItem>
+                        
+                        </apex:outputPanel>
+                        
+                        
+                        <apex:outputPanel >
+                        <apex:pageBlockSectionItem id="FetchButton" >
+                        
+                       <apex:commandButton action="{!fetchslots}" id="editButton" value="Fetch Slots"/>
+                          
+                        </apex:pageBlockSectionItem>
+                        
+                        </apex:outputPanel>
+                        
+                        
+                        
+                
+            </apex:pageBlockSection>
+            
+           
+        
+        </apex:pageBlock>
+        
+        <apex:pageBlock >
+            <apex:pageBlockSection  columns="2">
+            <apex:outputPanel >
+            <apex:pageBlockSectionItem >
+            <apex:pageBlockTable value="{!timewraplist}" var="item" rendered="{!timelist!=null}">
+            <apex:column >
+                    <apex:inputCheckbox value="{!item.selected}" disabled="{!item.selected}" id="chk"  />
+                </apex:column>
+               
+                <apex:column value="{!item.t}"/>
+                
+                
+            </apex:pageBlockTable>
+            </apex:pageBlockSectionItem>
+            </apex:outputPanel>
+
+            <apex:outputPanel id="pan3" >
+            <apex:pageBlockSectionItem >
+             <apex:outputLabel value="Time allowed" for="timeslot" />
+                            <apex:selectList value="{!SelectedtimeSlot}" required="true" multiselect="false" id="timeslot" size="1" > 
+                                <apex:selectOptions value="{!TimeInterval}" />
+                            </apex:selectList>
+
+
+            </apex:pageBlockSectionItem>
+            <apex:inputField required="false" value="{!aptdum.Patient__c}" />
+             <apex:commandButton action="{!Dobooking}" id="BookButton" value="Book"  reRender="frm" disabled="if{1>2,true,false}"/>
+             
+            </apex:outputPanel>
+            
+            
+            </apex:pageBlockSection>
+        
+        
+        </apex:pageBlock>
+        
+        
+        
+        
+        
+        
+    </apex:form>
+</apex:page>

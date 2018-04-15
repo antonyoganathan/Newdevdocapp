@@ -1,0 +1,17 @@
+{
+    "projectName": "AntonDev",
+    "username": "anton@igate.com",
+    "id": "3c9394a0-407b-11e8-9f6e-a387ada57523",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://antonyoganathan-dev-ed.my.salesforce.com",
+    "workspace": "/Users/ayoganathan/Documents",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "StaticResource"
+    ]
+}
